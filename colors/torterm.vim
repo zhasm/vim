@@ -10,7 +10,7 @@ if exists("syntax_on")
   syntax reset
 endif
 "colorscheme default
-let g:colors_name = "torteterm"
+let g:colors_name = "torterm"
 
 " hardcoded colors :
 " GUI Comment : #80a0ff = Light blue

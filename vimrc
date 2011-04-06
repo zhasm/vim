@@ -15,7 +15,7 @@ if has("gui_running")
     set guifontwide=WenQuanYi\ Micro\ Hei:h13
     colorscheme molokai
 else
-    colorscheme torteterm
+    colorscheme torterm
 endif
 
 "设置（软）制表符宽度为4：
@@ -40,8 +40,13 @@ set hlsearch
 set ignorecase
 set incsearch
 "use perl/python mode of regex search
-nnoremap / /\v
-vnoremap / /\v
+" ,/ turn off search highlighting
+
+"set leader to ,
+let mapleader=","
+let g:mapleader=","
+nmap <leader>/ :nohl<CR>
+nmap <leader>n :set nu!<CR>
 
 "command mode by typing ; instead of ; under normal mode
 nnoremap ; :
@@ -80,7 +85,7 @@ autocmd BufWritePost ~/.vimrc   so ~/.vimrc
 "how to invoke?
 function! ReloadSnippets()
     call ResetSnippets()
-    call GetSnippets("~/.vim/snippets/", &filetype)
+    call GetSnippets("~/.vim/bundle/snipmate/snippets/", &filetype)
 endfunction
 "reload snippets for current filetype
 map <F6> :call ReloadSnippets()<CR>
@@ -88,7 +93,7 @@ imap <F6> <ESC>:call ReloadSnippets()<CR>
 
 "F7: Edit snippet
 function! EditSnippets()
-    let filename= "~/.vim/snippets/". &filetype . '.snippets'
+    let filename= "~/.vim/bundle/snipmate/snippets/". &filetype . '.snippets'
     exe 'vs' . filename
 endfunction
 map <F7> :call EditSnippets()<CR>
@@ -145,7 +150,7 @@ function! HasPaste()
 endfunction
 
 " high light current line and column
-set cursorcolumn " highlight the current column
+"set cursorcolumn " highlight the current column
 set cursorline " highlight current line
 set showcmd
 set showmatch
@@ -157,4 +162,16 @@ au FocusLost * :wa
 set ttyfast
 "set relativenumber
 
+" --- move around splits {
+" move to and maximize the below split
+map <C-J> <C-W>j<C-W>_
+" move to and maximize the above split
+map <C-K> <C-W>k<C-W>_
+" move to and maximize the left split
+nmap <c-h> <c-w>h<c-w><bar>
+" move to and maximize the right split
+nmap <c-l> <c-w>l<c-w><bar>
+set wmw=0                     " set the min width of a window to 0 so we can maximize others
+set wmh=0                     " set the min height of a window to 0 so we can maximize others
+" }
 
