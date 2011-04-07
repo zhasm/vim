@@ -1,4 +1,9 @@
 #!/bin/bash
 
-ln -s vimrc ~/.vimrc
+vimpath=`./vimpath`
 
+/bin/rm -f ~/.vimrc
+/bin/rm -rf ~/.vim
+
+ln -s $vimpath/vimrc ~/.vimrc
+ln -s $vimpath ~/.vim
